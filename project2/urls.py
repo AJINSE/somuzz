@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 """project2 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -18,5 +20,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',include('sports.urls')),
-]
+    path('',include('sports.urls')),
+
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

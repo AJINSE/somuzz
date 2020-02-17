@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Search result</title>
 </head>
 <body>
-$END$
+{% for i in search %}
+<p>and here is {{i.head}}</p>
+<p>{{i.sub}}</p>
+<p>{{i.team1}}</p>
+<p>{{i.team2}}</p>
+{% endfor %}
+
 </body>
 </html>

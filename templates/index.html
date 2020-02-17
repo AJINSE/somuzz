@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
 {%load static%}
 {%static 'images' as baseUrl%}
 <html lang="en">
+ {% block content %}
 
    <body class="game_info" data-spy="scroll" data-target=".header">
       <!-- LOADER -->
@@ -11,7 +11,7 @@
       </div>
       <!-- END LOADER -->
       <section id="top">
-      {% block content %}
+
          <div class="full-slider">
             <div id="carousel-example-generic" class="carousel slide">
                <!-- Indicators -->
@@ -28,11 +28,13 @@
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"></div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                            <div class="slider-contant" data-animation="animated fadeInRight">
-                              <h3>If you Don’t Practice<br>You <span class="color-yellow">Don’t Derserve</span><br>to win!</h3>
+                              <h3>If you Don’t Practice<br>You <span class="color-yellow">Don’t Derserve</span><br>to win! <span class="color-green"> ഇനി ചെറിയ കളികൾ ഇല്ല വലിയ കളികൾ മാത്രം</span></h3>
                               <p>If you use this site regularly and would like to help keep the site on the Internet, {{name}}<br>
                                  please consider donating a small sum to help pay..
                               </p>
+                              <form action="botton/" class="inline">
                               <button class="btn btn-primary btn-lg">Read More</button>
+                              </form>
                            </div>
                         </div>
                      </div>
@@ -85,7 +87,7 @@
                      <p class="headline"><i class="fa fa-star" aria-hidden="true"></i> About me :</p>
                      <!--made by vipul mirajkar thevipulm.appspot.com-->
                      <h1>
-                     <a href="" class="typewrite" data-period="2000" data-type='[ "AJIL CHANDRAN,IS THE DEVELOPER OF THIS PAGE .", "HE IS A VERY GOOD BOY.", "UYARNNA CHINTHAGATHI AND MOONJIYA JEEVITHAM"]'>
+                     <a href="" class="typewrite" data-period="2000" data-type='[ "DEVELOPED BY ABHIJITH PB .", "JUST FOR A FUN.", "HANDLED BY JUST A RATHER VERY INTELLIGENT SYSTEM"]'>
                      <span class="wrap"></span>
                      </a>
                      </h1>
@@ -96,7 +98,9 @@
             </div>
          </div>
       </section>
+      {% for mt in mt %}
       <div class="matchs-info">
+
          <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="row">
                <div class="full">
@@ -105,13 +109,14 @@
                         <div class="team-btw-match">
                            <ul>
                               <li>
-                                 <img src="{%static 'images/img-03.png'%}" alt="">
-                                 <span>Footbal Team</span>
+                                 <img style="height: 180px;width: 231px;" src={{mt.logo1.url}} alt="">
+                                 <span>{{mt.team1}}</span>
+
                               </li>
                               <li class="vs"><span>vs</span></li>
                               <li>
-                                 <img src="{%static 'images/img-04.png'%}" alt="">
-                                 <span>Super Team Club</span>
+                                 <img style="height: 180px;width: 231px;" src={{mt.logo2.url}} alt="">
+                                 <span>{{mt.team2}}</span>
                               </li>
                            </ul>
                         </div>
@@ -120,23 +125,30 @@
                </div>
             </div>
          </div>
+
          <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="row">
                <div class="full">
                   <div class="right-match-time">
+                     <br><br><br>
                      <h2>Next Match</h2>
+                     <br>
+                     <br>
+                     <br><br>
                      <ul id="countdown-1" class="countdown">
-                        <li><span class="days">10 </span>Day </li>
-                        <li><span class="hours">5 </span>Hours </li>
-                        <li><span class="minutes">25 </span>Minutes </li>
-                        <li><span class="seconds">10 </span>Seconds </li>
+                        <li><span class="days" id="a_{{ forloop.counter}}"></span>Day </li>
+                        <li><span class="hours" id="b_{{ forloop.counter}}"> </span>Hours </li>
+                        <li><span class="minutes" id="c_{{ forloop.counter}}"> </span>Minutes </li>
+                        <li><span class="seconds" id="d_{{ forloop.counter}}"> </span>Seconds </li>
                      </ul>
-                     <span>12/02/2017 /19:00pm</span>
+                     <span>{{mt.date}}</span>
                   </div>
                </div>
             </div>
          </div>
+
       </div>
+      {% endfor %}
       <section id="contant" class="contant">
          <div class="container">
             <div class="row">
@@ -288,34 +300,20 @@
                   </div>
                </div>
                <div class="col-lg-8 col-sm-8 col-xs-12">
+                  {% for i in objects %}
                   <div class="news-post-holder">
                      <div class="news-post-widget">
-                        <img class="img-responsive" src="{%static '/chooppi.jpg'%}" alt="">
+                        <img class="img-responsive" src="{{ i.img.url }}" alt="">
                         <div class="news-post-detail">
-                           <span class="date">{{fm.date}}</span>
-                           <h2><a href="blog-detail.html">{{fm.head}}At vero eos et accusamus et iusto odio dignissimos ducimus</a></h2>
-                           <p>{{fm.sub}}Just hours after that his grandma had died, Angel Di Maria imagined how she might react if he didn't play</p>
+                           <span class="date">{{i.date}}</span>
+                           <h2><a href="blog-detail.html">{{i.head}}</a></h2>
+                           <p>{{i.sub}}</p>
                         </div>
                      </div>
-                     <div class="news-post-widget">
-                        <img class="img-responsive" src="{{baseUrl}}/{{sm.img}}" alt="">
-                        <div class="news-post-detail">
-                           <span class="date">{{sm.date}}</span>
-                           <h2><a href="blog-detail.html">{{sm.head}}</a></h2>
-                           <p>{{sm.sub}} Angel Di Maria imagined how she might react if he didn't play</p>
-                        </div>
-                     </div>
+
                   </div>
-                  <div class="news-post-holder">
-                     <div class="news-post-widget">
-                        <img class="img-responsive" src="{{baseUrl}}/{{tm.img}}" alt="">
-                        <div class="news-post-detail">
-                           <span class="date">{{tm.date}}</span>
-                           <h2><a href="blog-detail.html">{{tm.head}}</a></h2>
-                           <p>{{tm.sub}}</p>
-                        </div>
-                     </div>
-                  </div>
+                  {% endfor %}
+
                </div>
             </div>
          </div>
@@ -369,10 +367,10 @@
                            <div class="team-detail-hover position-center-x">
                               <p>Lacus vulputate torquent mollis venenatis quisque suspendisse fermentum primis,</p>
                               <ul class="social-icons style-4 style-5">
-                                 <li><a class="facebook" href="#" tabindex="0"><i class="fa fa-facebook"></i></a></li>
-                                 <li><a class="twitter" href="#" tabindex="0"><i class="fa fa-twitter"></i></a></li>
-                                 <li><a class="youtube" href="#" tabindex="0"><i class="fa fa-youtube-play"></i></a></li>
-                                 <li><a class="pinterest" href="#" tabindex="0"><i class="fa fa-pinterest-p"></i></a></li>
+                                 <li><a class="facebook" href="https:// www.facebook.com" tabindex="0"><i class="fa fa-facebook"></i></a></li>
+                                 <li><a class="twitter" href="https:// www.twitter.com" tabindex="0"><i class="fa fa-twitter"></i></a></li>
+                                 <li><a class="youtube" href="https://www.youtube.com" tabindex="0"><i class="fa fa-youtube-play"></i></a></li>
+                                 <li><a class="pinterest" href="https://www.pinterest.com" tabindex="0"><i class="fa fa-pinterest-p"></i></a></li>
                               </ul>
                               <a class="btn blue-btn" href=" /soccer/team-detail.html" tabindex="0">View Detail</a>
                            </div>
@@ -416,7 +414,41 @@
 
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
       <!-- ALL JS FILES -->
+      <script>
 
+            function makeTimer() {
+            {% for mt in mt %}
+
+        		var endTime = new Date({{mt.date|date:"U"}}*1000);
+                  endTime = (Date.parse(endTime) / 1000);
+
+                  var now = new Date();
+                  now = (Date.parse(now) / 1000);
+
+                  var timeLeft = endTime - now;
+
+                  var days = Math.floor(timeLeft / 86400);
+                  var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+                  var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+                  var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+
+                  if (hours < "10") { hours = "0" + hours; }
+                  if (minutes < "10") { minutes = "0" + minutes; }
+                  if (seconds < "10") { seconds = "0" + seconds; }
+
+                  $("#a_{{ forloop.counter}}").html(days);
+                  $("#b_{{ forloop.counter}}").html(hours);
+                  $("#c_{{ forloop.counter}}").html(minutes);
+                  $("#d_{{ forloop.counter}}").html(seconds);
+
+                  {% endfor %}
+
+          }
+
+          setInterval(function() { makeTimer(); }, 1000);
+      </script>
       {% endblock content %}
+
+
    </body>
 </html>
